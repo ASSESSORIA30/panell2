@@ -1,0 +1,146 @@
+@import "tailwindcss";
+@import "@fontsource-variable/schibsted-grotesk";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0b0c0f;
+  --bg-glow: #14161c;
+  --surface: #13151a;
+  --surface-2: #191c22;
+  --surface-3: #20242b;
+  --hover: rgba(255, 255, 255, 0.04);
+  --border: rgba(255, 255, 255, 0.065);
+  --border-strong: rgba(255, 255, 255, 0.12);
+  --text: #eceef1;
+  --text-2: #a4a9b4;
+  --text-3: #6d7380;
+  --brand: #e9b44c;
+  --brand-soft: rgba(233, 180, 76, 0.12);
+  --brand-ink: #1b1406;
+  --focus: #e9b44c;
+  --good: #0ca30c;
+  --good-text: #3fcf6a;
+  --warning: #fab219;
+  --serious: #ec835a;
+  --critical: #d03b3b;
+  --critical-text: #f07272;
+  --shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 8px 24px -12px rgba(0, 0, 0, 0.6);
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --s6: #008300; --s7: #9085e9; --s8: #e66767;
+  --grid: rgba(255, 255, 255, 0.06);
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f3f4f6;
+  --bg-glow: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f7f8fa;
+  --surface-3: #eef0f3;
+  --hover: rgba(15, 17, 21, 0.035);
+  --border: rgba(15, 17, 21, 0.08);
+  --border-strong: rgba(15, 17, 21, 0.14);
+  --text: #0f1115;
+  --text-2: #4b515c;
+  --text-3: #858b96;
+  --brand: #a8740f;
+  --brand-soft: rgba(168, 116, 15, 0.1);
+  --brand-ink: #ffffff;
+  --focus: #a8740f;
+  --good-text: #087a08;
+  --critical-text: #b42f2f;
+  --shadow: 0 1px 2px rgba(15, 17, 21, 0.04), 0 8px 24px -16px rgba(15, 17, 21, 0.18);
+  --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100; --s5: #e87ba4; --s6: #008300; --s7: #6250d6; --s8: #e34948;
+  --grid: rgba(15, 17, 21, 0.07);
+}
+
+@theme inline {
+  --font-sans: "Schibsted Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-hover: var(--hover);
+  --color-line: var(--border);
+  --color-line-strong: var(--border-strong);
+  --color-ink: var(--text);
+  --color-ink-2: var(--text-2);
+  --color-ink-3: var(--text-3);
+  --color-brand: var(--brand);
+  --color-brand-soft: var(--brand-soft);
+  --color-brand-ink: var(--brand-ink);
+  --color-good: var(--good-text);
+  --color-critical: var(--critical-text);
+  --color-warning: var(--warning);
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background-image: radial-gradient(1200px 500px at 70% -200px, var(--bg-glow), transparent 70%);
+  background-attachment: fixed;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+::selection {
+  background: var(--brand-soft);
+}
+
+/* Panel con profundidad sutil: el borde superior capta la luz */
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+}
+
+.scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--surface-2) 0%, var(--surface-3) 50%, var(--surface-2) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+  border-radius: 8px;
+}
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+
+/* Tooltip de ECharts */
+.a30-tip {
+  font-family: var(--font-sans) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+@media print {
+  aside, header, .no-print { display: none !important; }
+}
